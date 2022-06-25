@@ -1,0 +1,43 @@
+<%- include('../partials/header.ejs') %>
+
+    <div class="col-sm-10" style=" padding-top: 80px;padding-left: 80px;">
+        
+        <h3 style="text-align: center;">
+            Mobiles 
+        </h3>
+    
+    <form>
+        <% if(mobiles.length){ %>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Company</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% mobiles.forEach(mobile => { %>
+                    <% if(mobile.status === 'available'){ %>
+                <tr>
+                    <th> <input class="form-check-input" type="radio" name="item" id="item" value="<%= mobile.id %>"></th>
+                    <td><%= mobile.name %></td>
+                    <td><%= mobile.company %></td>
+                </tr>
+            </tbody>
+            <% } %>
+        </form>
+
+                <% }); %>
+            </table>
+            <div style="padding-left: 500px;">
+            <button type="submit" class="btn btn-success" formmethod="POST" formaction="/trade/<%=omid %>/tradeoffered">Trade it</button>
+            </div>
+           
+        <% } else { %>
+            <p>There are no mobiles to display.</p>
+        <% } %>
+        </div>
+
+
+<%- include('../partials/footer.ejs') %>

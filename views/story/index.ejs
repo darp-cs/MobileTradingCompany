@@ -1,0 +1,28 @@
+<%- include('../partials/header.ejs') %>
+<ul class="list-group">
+    <% if(categories.length){ %>
+        <% categories.forEach(categories => {%>
+            <li class="list-group-item"><%= categories %></li>
+            
+            <ul class="list-group">
+                <% if(mobiles.length){ %>
+                    <% mobiles.forEach(mobile => { 
+                        if (mobile.company === categories) { %>
+                            <li class="list-group-item">
+                                <a href="/trade/<%= mobile._id %>">
+                                <%= mobile.name %>
+                            </a></li>
+                                <% } });
+                            } else { %>
+                                <p>There are no model to display.</p>
+                        <% } %>
+            </ul>
+            <% }); %>
+        <%  }else { %>
+            <p>There are no company to display.</p>
+        <% } %>
+        </ul>
+
+   
+
+<%- include('../partials/footer.ejs') %>

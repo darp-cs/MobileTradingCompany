@@ -1,0 +1,108 @@
+<%- include('../partials/header.ejs') %>
+        <h4 style=" padding-top: 05px;padding-left: 50px;">
+            <%=user.firstName%>`s Mobiles 
+        </h4>
+        <div class="col-sm-8" style="padding-left: 50px;">
+        <% if(mobiles.length){ %>
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Mobile Company and Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% mobiles.forEach(mobile => { %>
+                <tr>
+                    <td><%= mobile.company %> - <%= mobile.name %></td>
+                    <td><%= mobile.status %></td>
+                    <td>
+                        <form>
+                            <button type="submit" class="btn btn-warning" formmethod="GET" formaction="/trade/<%= mobile._id%>/edit">Edit</button>
+                            <button type="submit"  class="btn btn-danger"formmethod="POST" formaction="/trade/<%= mobile._id %>?_method=DELETE">Delete</button>
+                            <% if(mobile.status != 'available' && mobile.status != 'traded'){ %>
+                                <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/trade/<%= mobile._id%>/manageOffer">Manage Offer</button>
+                            <% } %>
+                            
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+                <% }); %>
+            </table>
+            <% } else { %>
+                <p>There are no mobiles to display.</p>
+            <% } %>
+            </div>
+            <div class="col-sm-6" style="padding-right: 50px;">
+<h4> Follow List</h4>
+<% if(wmobiles.length){ %>
+<table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Mobile Company and Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% wmobiles.forEach(wtrade =>{ %>
+                        <% wtrade.mnames.forEach(r=> {%>
+                        <tr>
+                            <td>
+                                <%= r.company%> - <%= r.name%>
+                            </td>
+                            <td><%= r.status %></td>
+                            <td>
+                                <form>
+                                    <button type="submit" class="btn btn-info" formmethod="POST" formaction="/trade/<%= r.id%>/notinterested">Unfollow</button>
+
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                        <% }); %>
+                        <% }); %>
+                    </table>
+                    <% } else { %>
+                        <p>There are no mobiles in the follow list.</p>
+                    <% } %>
+
+                    </div>
+<div class="col-sm-6" style="padding-left: 50px;">
+<h4> Offer Mobile</h4>
+<% if(omobiles.length){ %>
+
+<table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Mobile Company and Name</th>
+                    <th scope="col">Status </th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% omobiles.forEach(omobile =>{ %>
+                        <tr>
+                            <td>
+                                <%= omobile.tradeid.company%> - <%= omobile.tradeid.name%>
+                            </td>
+                            <td><%= omobile.tradeid.status %></td>
+                            <td>
+                                <form>
+                                    <button type="submit" class="btn btn-danger"  formmethod="POST" formaction="/trade/<%= omobile.tradeid.id%>/offercancel">Cancel offer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                        <% }); %>
+                    </table>
+                    <% } else { %>
+                        <p>There are no mobiles in offer.</p>
+                    <% } %>
+
+    </div>
+
+
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,64 @@
+<%- include('../partials/header.ejs') %>
+
+    <div class="col-sm-8" style=" padding-top: 80px;padding-left: 100px;">
+
+<% if(r){ %>
+    <table class="table table-dark">
+        <tbody>
+            <tr>
+            <td><%= result.tradeid.name%></td>
+            <td></td>
+            <td><%= result.offerid.name%></td>
+            <td rowspan="2">
+               
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="<%=result.tradeid.image %>" height="150" width="120">
+        </td>
+        <td>
+            <img src="/images/arrow.png" height="80" width="80">
+        </td>
+        <td>
+            <img src="<%=result.offerid.image %>" height="150" width="120">
+        </td>
+    </tr>
+        </tbody>
+    </table>
+    <div style="padding-left: 200px;">
+    <form>
+        <button type="submit" class="btn btn-success"  formmethod="POST" formaction="/trade/<%= result.tradeid.id%>/offercancel">Cancel offer</button>
+    </form>
+</div>
+    <% } else {%>
+        <table class="table table-dark">
+        <tbody>
+            <tr>
+            <td><%= result.tradeid.name%>
+                
+            </td>
+            <td><%= result.offerid.name%>
+            
+            </td>
+            <td rowspan ="2">
+                <form>
+                <button type="submit" class="btn btn-success"  formmethod="POST" formaction="/trade/<%= result.tradeid.id%>/acceptOffer">Accept</button>
+                <button type="submit" class="btn btn-danger"  formmethod="POST" formaction="/trade/<%= result.tradeid.id%>/rejectOffer">Reject</button>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="<%=result.tradeid.image %>" height="150" width="120">
+        </td>
+        <td>
+            <img src="<%=result.offerid.image %>" height="150" width="120">
+        </td>
+    </tr>
+        </tbody>
+        </table>
+        <% } %>
+
+    </div>
+<%- include('../partials/footer.ejs') %>

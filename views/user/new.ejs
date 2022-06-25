@@ -1,0 +1,59 @@
+<%- include('../partials/header.ejs') %>
+<!-- <div class="content">
+    <div class="center-container">
+        <form action = '/users' method = 'POST' class="mt-20">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" class = "fixed-width" required>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" class = "fixed-width" required>
+        
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" class = "fixed-width" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class = "fixed-width" required>
+
+            <button class="button submit-btn mb-100">Register</button>
+        </form>
+    </div>
+</div>-->
+<div class="form-center">
+    <form class="form-horizontal align-items-center" action="/users" method ="Post">
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">First Name:</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" name="firstName" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2">Last Name:</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" name="lastName" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Email:</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" name="email" required>
+          </div>
+      </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Password:</label>
+                <div class="col-sm-5">
+                  <input type="password" class="form-control" name="password" required>
+                </div>
+              </div>
+          
+
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Create Trade</button>
+            </div>
+    </form>
+</div>
+
+<%- include('../partials/footer.ejs') %>

@@ -1,0 +1,69 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>
+    Mobile Trade
+</title>
+
+<link rel="stylesheet" href="/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+<script src="/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href= "/css/style.css">
+</head>
+
+<body style="background-color:#E5E4E2;">
+<div class="header">
+  <a href="/" class="logo">
+    <img src= "/images/logo.JPG" alt="Mobile Trade Logo" height="30" width="200">
+  </a>
+  <div class="header-right">
+    <% if(!user){ %>
+    <a href="/users/login" class="nav-link disabled">Login
+      <span class="glyphicon glyphicon-log-in"></span>
+    </a>
+    &nbsp;
+    <a href="/users/new" class="nav-link disabled">Sign up</a>
+    &nbsp;
+    <% } else{ %>
+      <a href="/trade/new">Create New Trade
+        <span class="	glyphicon glyphicon-plus"></span>
+      </a>
+      &nbsp;
+      <a href="/users/profile">Account
+        <span class="	glyphicon glyphicon-user"></span>
+      </a>
+      &nbsp;
+      <a href="/users/logout" class="nav-link disabled">Logout
+        <span class="glyphicon glyphicon-log-out"></span>
+      </a>
+      <% } %>
+  </div>
+</div>
+
+<nav class="navbar navbar-dark bg-dark" style="background-color: #90EE90;">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home
+          <span class="	glyphicon glyphicon-home"></span>
+        </a></li>
+        <li><a href="/trade">Trade</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+      </ul>
+  </nav>
+
+  <% if(errorMessages.length > 0) { %>
+    <% errorMessages.forEach(message => { %>
+      <div class="error">
+        <%=message%>
+      </div>
+      <% }); %>
+      <%}%>
+
+  <% if(successMessages.length > 0){ %>
+    <% successMessages.forEach(message => { %>
+      <div class="success">
+        <%=message%>
+      </div>
+    <%});%>
+  <%}%>

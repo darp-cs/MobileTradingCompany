@@ -1,0 +1,80 @@
+body { 
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .header {
+    overflow: auto;
+    background-color: #2E8B57;
+    padding: 02px 02px;
+  }
+  
+  .header a {
+    float: left;
+    color: whitesmoke;
+    text-align: center;
+    padding: 05px;
+    text-decoration: none;
+    font-size: 14px; 
+    line-height: 40px;
+    padding-top: 05px;
+  }
+  
+  .header a:hover {
+    background-color: #696969;
+  }
+  
+  .header-right {
+    float: right;
+  }
+  
+  .footer
+  {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color:  	#40E0D0;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 4px;
+    padding: 2px;
+  }
+  .main
+  {
+    padding-left: 80px;
+    height: 460px;
+    padding-top: 80px;
+  }
+  .trade_main
+  {
+    padding-left: 80px;
+    height: 460px;
+    padding-top: 20px;
+  }
+
+  article {
+    width: 50%;
+    padding: 10px;
+    float: left;
+  }
+  aside {
+    width: 40%;
+    float: right;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin: 10px;
+    height: 50px;
+  }
+
+  .list-group
+  {
+    padding-right: 80px;
+    padding-left: 80px;
+  }
+
+  .form-center
+  {
+    padding-left: 90px;
+  }
