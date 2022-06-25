@@ -278,25 +278,25 @@ exports.offercancel = (req, res, next) => {
 
 //To manage offers
 exports.manageOffer= (req, res, next) => {
-    let tid= req.params.id;
-    console.log(tid)
-    let r = true
+    let trademobileid= req.params.id;
+    let flag = true
     trademobile.findOne({offerid:tid}).populate('tradeid').populate('offerid')
-     .then(result =>{
-         if(result){
-         res.render('./tradem/manageOffer',{r,result})
+     .then(resultmobile =>{
+         if(resultmobile){
+         res.render('./tradem/manageOffer',{flag,resultmobile})
          }
          else{
              r = false;
-             trademobile.findOne({tradeid:tid}).populate('tradeid').populate('offerid')
-             .then(result=>{
-                res.render('./tradem/manageOffer',{r,result})
+             trademobile.findOne({tradeid:trademobileid}).populate('tradeid').populate('offerid')
+             .then(resultmobile=>{
+                res.render('./tradem/manageOffer',{flag,resultmobile})
              })
              .catch(err=> next(err));
          }
      })
      .catch(err =>next(err));
 }
+
 
 //to accept the offer
 exports.acceptOffer = (req, res, next) => {
