@@ -32,6 +32,7 @@ exports.getUserLogin = (req, res, next) => {
     res.render('./user/login');
 }
 
+//login function
 exports.login = (req, res, next)=>{
     let email = req.body.email;
     let password = req.body.password;
@@ -39,17 +40,15 @@ exports.login = (req, res, next)=>{
     model.findOne({ email: email })
     .then(user => {
         if (!user) {
-            req.flash('error', 'Wrong email address');  
+            req.flash('error', 'Email address is wrong');  
             res.redirect('/users/login');
         } else {
             user.comparePassword(password)
             .then(result=>{
                 if(result) {
                     req.session.user = user._id;
-                    req.session.firstName = user.firstName;
-                    req.session.lastName = user.lastName;
-                    req.flash('success', 'You have successfully logged in');
-                    res.redirect('/users/profile');
+                    req.session.name = user.name;
+                    res.redirect('/');
                 } else {
                     req.flash('error', 'Wrong password');      
                     res.redirect('/users/login');
@@ -61,39 +60,21 @@ exports.login = (req, res, next)=>{
     .catch(err => next(err));
 };
 
+//Profile
 exports.profile = (req, res, next)=>{
-    let id = req.session.user;
+    let userid = req.session.user;
     let flag = false;
-    let a =[]
-    let b =[]
-    Promise.all([model.findById(id), mobile.find({owner: id}),
-        watchList.find({uname: id}).populate('mnames'),trades.find({traderid:id}).populate('tradeid')]) 
+    Promise.all([model.findById(userid), mobile.find({owner: userid}),
+        watchList.find({uname: userid}).populate('mnames'),trades.find({traderid:userid}).populate('tradeid')]) 
     .then(results=>{
         const [user, mobiles,wmobiles,omobiles] = results;
         const flag = false;
-        mobiles.forEach(mobile =>{
-            //console.log(mobile.name);
-            a.push(mobile.id);
-        })
-        omobiles.forEach(mobile =>{
-            b.push(mobile.offerid);
-        })
-        for (const a1 of a){
-            for (const b1 of b){
-                if( a1 ===b1)
-                {
-                    console.log("yy")
-                    flag = true;
-                }
-            }
-        }
-       //console.log(b    )
         res.render('./user/profile', {user, mobiles,wmobiles,omobiles});
 })
 .catch(err=>next(err));
 };
 
-
+//logout
 exports.logout = (req, res, next)=>{
     req.session.destroy(err=>{
         if(err) 
