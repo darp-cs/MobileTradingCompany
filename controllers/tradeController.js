@@ -223,13 +223,12 @@ exports.unfollow = (req, res, next) => {
 
 //To start trade
 exports.startTrade = (req, res, next) => {
-let omid = req.params.id;
-let uid = req.session.user;
-Promise.all([User.findById(uid), Mobiledevice.find({owner: uid})])
-.then(results => {
-    let a = true;
-    const [user, mobiles] = results;
-    res.render('./tradem/trabemobile', {user, mobiles,omid })
+let mobileid = req.params.id;
+let userid = req.session.user;
+Promise.all([User.findById(userid), Mobiledevice.find({owner: userid})])
+.then(mobiledetails => {
+    const [user, mobiles] = mobiledetails;
+    res.render('./tradem/trabemobile', {user, mobiles,mobileid })
 })
 .catch(err=> next(err));
 }
