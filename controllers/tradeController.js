@@ -286,7 +286,7 @@ exports.manageOffer= (req, res, next) => {
          res.render('./tradem/manageOffer',{flag,resultmobile})
          }
          else{
-             r = false;
+             flag = false;
              trademobile.findOne({tradeid:trademobileid}).populate('tradeid').populate('offerid')
              .then(resultmobile=>{
                 res.render('./tradem/manageOffer',{flag,resultmobile})
@@ -300,76 +300,38 @@ exports.manageOffer= (req, res, next) => {
 
 //to accept the offer
 exports.acceptOffer = (req, res, next) => {
-    let tid = req.params.id;
-    Mobiledevice.findByIdAndUpdate(tid,{status: "traded"},{useFindAndModify: false, runValidators: true})
-    .then(mobile =>{
-        if(mobile) {} 
-        else {
-            let err = new Error('Cannot find a mobile with id ' + tid);
-            err.status = 404;
-            next(err);
-        }
-})
-    .catch(err=> next(err));
-    trademobile.findOne({tradeid:tid}).populate('offerid')
+    let trademobileid = req.params.id;
+    Mobiledevice.findByIdAndUpdate(trademobileid,{status: "traded"},{useFindAndModify: false, runValidators: true})
+    .then().catch(err=> next(err));
+    trademobile.findOne({tradeid:trademobileid}).populate('offerid')
     .then(result=>{
-
-        oid = result.offerid.id
-        console.log(oid)
-        Mobiledevice.findByIdAndUpdate(oid,{status: "traded"},{useFindAndModify: false, runValidators: true})
-    .then(mobile =>{
-        if(mobile) {} 
-        else {
-            let err = new Error('Cannot find a mobile with id ' + oid);
-            err.status = 404;
-            next(err);
-        }
-})
-    .catch(err=> next(err));
-    trademobile.findOneAndDelete({tradeid:tid})
+        offermobileid = result.offerid.id;
+        Mobiledevice.findByIdAndUpdate(offermobileid,{status: "traded"},{useFindAndModify: false, runValidators: true})
+    .then().catch(err=> next(err));
+    trademobile.findOneAndDelete({tradeid:trademobileid})
     .then(result=>{
         if(result){
-            req.flash('success', 'Offer has been Accepted');
             res.redirect("/users/profile")
         }
     })
-    .catch(err=> next(err));
-    
+    .catch(err=> next(err));    
 })
-    .catch(err=> next(err));
-    
+    .catch(err=> next(err));    
 }
 
 //to reject the offer
 exports.rejectOffer = (req, res, next) => {
-    let tid = req.params.id;
-    console.log(tid);
-    Mobiledevice.findByIdAndUpdate(tid,{status: "available"},{useFindAndModify: false, runValidators: true})
-    .then(mobile =>{
-        if(mobile) {} 
-        else {
-            let err = new Error('Cannot find a mobile with id ' + tid);
-            err.status = 404;
-            next(err);
-        }
-})
+    let trademobileid = req.params.id;
+    Mobiledevice.findByIdAndUpdate(trademobileid,{status: "available"},{useFindAndModify: false, runValidators: true})
+    .then()
     .catch(err=> next(err));    
-    trademobile.findOne({tradeid:tid}).populate('offerid')
+    trademobile.findOne({tradeid:trademobileid}).populate('offerid')
     .then(result=>{
-        oid = result.offerid.id
-        Mobiledevice.findByIdAndUpdate(oid,{status: "available"},{useFindAndModify: false, runValidators: true})
-    .then(mobile =>{
-        if(mobile) {} 
-        else {
-            let err = new Error('Cannot find a mobile with id ' + oid);
-            err.status = 404;
-            next(err);
-        }
-})
-    .catch(err=> next(err));
-    trademobile.findOneAndDelete({tradeid:tid})
+        offermobileid = result.offerid.id
+        Mobiledevice.findByIdAndUpdate(offermobileid,{status: "available"},{useFindAndModify: false, runValidators: true})
+    .then().catch(err=> next(err));
+    trademobile.findOneAndDelete({tradeid:trademobileid})
     .then(result=>{
-        req.flash('success', 'Offer has been Rejected');
         res.redirect("/users/profile")
     })
     .catch(err => next(err));
