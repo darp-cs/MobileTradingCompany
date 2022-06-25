@@ -1,11 +1,11 @@
-exports.index = (req, res) => {
-    res.render('index');
+exports.homePage = (req, res) => {
+    res.render('home');
 };
 
-exports.contact = (req, res) => {
+exports.contactPage = (req, res) => {
     res.render('contact');
 };
 
-exports.about = (req, res) => {
+exports.aboutPage = (req, res) => {
     res.render('about');
 };
