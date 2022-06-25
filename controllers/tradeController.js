@@ -1,6 +1,6 @@
 const Mobiledevice = require('../models/item');
 const User = require('../models/user');
-const followList = require('../models/interest');
+const followList = require('../models/follow');
 const trademobile = require('../models/trade');
 const { DateTime } = require("luxon");
 

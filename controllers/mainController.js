@@ -1,5 +1,5 @@
 exports.homePage = (req, res) => {
-    res.render('home');
+    res.render('index');
 };
 
 exports.contactPage = (req, res) => {

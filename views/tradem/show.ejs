@@ -1,0 +1,49 @@
+<%- include('../partials/header.ejs') %>
+<div class="trade_main">
+    <article>
+    <h4>
+        <%= mobiledetails.name %>
+    </h4>
+    <small style="font-family: sans-serif;">Posted on <%=mobiledetails.createAt %> by <%= mobiledetails.owner.firstName + ' ' + mobiledetails.owner.lastName %></small>
+    <br>
+    <br>
+    <div  style="font-family: sans-serif;"><%= mobiledetails.details %></div>
+    <br>
+    <br>
+    <div class="col-sm-4" style="font-family: sans-serif;">Company: <%= mobiledetails.company%></div>
+    <div class="col-sm-8" style="font-family: sans-serif;">Battery: <%= mobiledetails.battery%></div>
+    <br>
+    <br>
+    <div class="col-sm-4" style="font-family: sans-serif;">Memory: <%= mobiledetails.memory%></div>
+    <div class="col-sm-4" style="font-family: sans-serif;">Color: <%= mobiledetails.color%></div>
+    </article>
+    <aside style="background-color:#E5E4E2;">
+        
+        
+        <img src="<%=mobiledetails.image %>" height="120" width="120">
+        <br>
+        <br>
+        <% if(user != mobiledetails.owner._id){ %> 
+            Want to trade or track the mobiledetails?
+            <br>
+        <form>
+        <button type="submit" class="btn btn-light" formmethod="POST" formaction="/trade/<%= mobiledetails._id %>/tradeitem">Trade</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <% if(!fFlag){ %>
+        <button type="submit" class="btn btn-info" formmethod="POST" formaction="/trade/<%= mobiledetails._id %>/interested">Follow</button>
+        <% } else {%>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-info" formmethod="POST" formaction="/trade/<%= mobiledetails._id %>/notinterested">Unfollow</button>
+        <%} %>
+      </form>
+      <% } %>
+      <form>
+        <% if(user == mobiledetails.owner._id){ %>
+        <button type="submit" class="btn btn-warning" formmethod="GET" formaction="/trade/<%= mobiledetails._id %>/edit">Edit</button>
+        <button type="submit" class="btn btn-danger" formmethod="POST" formaction="/trade/<%= mobiledetails._id %>?_method=DELETE">Delete</button>
+        <% } %>
+    </form>
+      </aside>
+</div>
+
+<%- include('../partials/footer.ejs') %>
