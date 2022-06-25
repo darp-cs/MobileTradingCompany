@@ -235,26 +235,22 @@ Promise.all([User.findById(userid), Mobiledevice.find({owner: userid})])
 
 //Offer Trade function
 exports.tradeoffered =(req, res, next) => {
-    let omid = req.params.id;
-    let tmid = req.body;
-    let uid = req.session.user;
-    let tmid1 = tmid.item
-    trademobile.findOne({tradeid:omid}, {offerid: tmid1})
-    .then(a=>{
-    if(!a)
+    let offermobileid = req.params.id;
+    let trademobileid = req.body;
+    let userid = req.session.user;
+    let trademobileid1 = trademobileid.item
+    trademobile.findOne({tradeid:offermobileid}, {offerid: trademobileid1})
+    .then(ans=>{
+    if(!ans)
     {
         let newtrade = new trademobile();
-        newtrade.traderid = uid;
-        newtrade.tradeid = omid;
-        newtrade.offerid = tmid1
-        Mobiledevice.findOneAndUpdate({_id:omid}, {status: "offer pending"})
-        .then(r=>{
-        })
-        .catch(err=> next(err));
-        Mobiledevice.findOneAndUpdate({_id:tmid1}, {status: "offer pending"})
-        .then(r=>{
-        })
-        .catch(err=> next(err));
+        newtrade.traderid = userid;
+        newtrade.tradeid = offermobileid;
+        newtrade.offerid = trademobileid1
+        Mobiledevice.findOneAndUpdate({_id:offermobileid}, {status: "offer pending"})
+        .then().catch(err=> next(err));
+        Mobiledevice.findOneAndUpdate({_id:trademobileid1}, {status: "offer pending"})
+        .then().catch(err=> next(err));
         newtrade.save();
         res.redirect('/users/profile');
     }
@@ -267,17 +263,15 @@ exports.tradeoffered =(req, res, next) => {
 
 //To cancel the offer
 exports.offercancel = (req, res, next) => {
-    let mid = req.params.id;
-    trademobile.findOneAndDelete({tradeid:mid})
-    .then(r=>{
-        const oid = r.offerid
-        const tid = r.tradeid
-        Mobiledevice.findOneAndUpdate({_id:oid}, {status: "available"})
-        .then(r=>{})
-        .catch(err=> next(err));
-        Mobiledevice.findOneAndUpdate({_id:tid}, {status: "available"})
-        .then(r=>{})
-        .catch(err=> next(err));
+    let mobileid = req.params.id;
+    trademobile.findOneAndDelete({tradeid:mobileid})
+    .then(result=>{
+        const offermobileid = result.offerid
+        const trademobileid = result.tradeid
+        Mobiledevice.findOneAndUpdate({_id:offermobileid}, {status: "available"})
+        .then().catch(err=> next(err));
+        Mobiledevice.findOneAndUpdate({_id:trademobileid}, {status: "available"})
+        .then().catch(err=> next(err));
         res.redirect('/users/profile');
     })
 }
