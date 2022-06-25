@@ -1,7 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/userController');
 const { isGuest, isLoggedIn } = require('../middlewares/auth');
-// const{ logInLimiter } = require('../middlewares/rateLimiters');
 
 const router = express.Router();
 
@@ -21,6 +20,8 @@ router.post('/login', isGuest, controller.login);
 
 //GET /users/profile: send user's profile page
 router.get('/profile', isLoggedIn, controller.profile);
+
+
 
 //POST /users/logout: logout a user
 router.get('/logout', isLoggedIn, controller.logout);

@@ -1,11 +1,12 @@
 <%- include('../partials/header.ejs') %>
         <h4 style ="padding-top: 05px;padding-left: 50px;">Personal Information</h4>
         <ul style ="padding-top: 05px;padding-left: 70px;list-style: none;">
+            <form></form>
             <li><strong>First Name: </strong><%=user.firstName%></li>
-            <li><strong>Surname: </strong><%=user.surname%></li>
+            <li><strong>Last Name: </strong><%=user.surname%></li>
             <li><strong>Birthdate: </strong><%=user.birthdate%></li>
-            <li><strong>Address: </strong><%=user.address%></li>
-            <li><strong>Email: </strong><%=user.email%></li>
+            <li><strong>Address:</strong><%=user.address%>
+            <li><strong>Email:</strong><%=user.email%></li>
         </ul>
         <h4 style=" padding-top: 05px;padding-left: 50px;">
             <%=user.firstName%>`s Mobiles 
@@ -27,10 +28,8 @@
                     <td><%= mobile.status %></td>
                     <td>
                         <form>
-                            <button type="submit" class="btn btn-warning" formmethod="GET" formaction="/trade/<%= mobile._id%>/edit">Edit</button>
-                            <button type="submit"  class="btn btn-danger"formmethod="POST" formaction="/trade/<%= mobile._id %>?_method=DELETE">Delete</button>
                             <% if(mobile.status != 'available' && mobile.status != 'traded'){ %>
-                                <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/trade/<%= mobile._id%>/manageOffer">Manage Offer</button>
+                                <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/profile/<%= mobile._id%>/manageOffer">Manage Offer</button>
                             <% } %>
                             
                         </form>
@@ -56,18 +55,13 @@
                 </thead>
                 <tbody>
                     <% wmobiles.forEach(wtrade =>{ %>
-                        <% wtrade.mnames.forEach(r=> {%>
+                        <% wtrade.mobiles.forEach(r=> {%>
                         <tr>
                             <td>
                                 <%= r.company%> - <%= r.name%>
                             </td>
                             <td><%= r.status %></td>
-                            <td>
-                                <form>
-                                    <button type="submit" class="btn btn-info" formmethod="POST" formaction="/trade/<%= r.id%>/notinterested">Unfollow</button>
 
-                                </form>
-                            </td>
                         </tr>
                     </tbody>
                         <% }); %>
@@ -78,39 +72,7 @@
                     <% } %>
 
                     </div>
-<div class="col-sm-6" style="padding-left: 50px;">
-<h4> Offer Mobile</h4>
-<% if(omobiles.length){ %>
 
-<table class="table table-dark">
-                <thead>
-                <tr>
-                    <th scope="col">Mobile Company and Name</th>
-                    <th scope="col">Status </th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <% omobiles.forEach(omobile =>{ %>
-                        <tr>
-                            <td>
-                                <%= omobile.tradeid.company%> - <%= omobile.tradeid.name%>
-                            </td>
-                            <td><%= omobile.tradeid.status %></td>
-                            <td>
-                                <form>
-                                    <button type="submit" class="btn btn-danger"  formmethod="POST" formaction="/trade/<%= omobile.tradeid.id%>/offercancel">Cancel offer</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                        <% }); %>
-                    </table>
-                    <% } else { %>
-                        <p>There are no mobiles in offer.</p>
-                    <% } %>
-
-    </div>
 
 
 <%- include('../partials/footer.ejs')%>

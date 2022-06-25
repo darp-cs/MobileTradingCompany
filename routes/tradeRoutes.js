@@ -42,4 +42,4 @@ router.post('/:id/acceptOffer',  isLoggedIn, controller.acceptOffer);
 router.post('/:id/rejectOffer',  isLoggedIn, controller.rejectOffer);
 
 
-module.exports=router;
+module.exports=router;  

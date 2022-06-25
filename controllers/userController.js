@@ -77,6 +77,7 @@ exports.profile = (req, res, next)=>{
 .catch(err=>next(err));
 };
 
+
 // logout function
 exports.logout = (req, res, next)=>{
     req.session.destroy(err=>{

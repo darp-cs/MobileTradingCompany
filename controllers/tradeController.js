@@ -48,7 +48,7 @@ exports.showMobileDetail = (req, res, next) => {
         if(mobiledetails) {
             let followFlag = false;
             let userId = req.session.user;
-            followList.findOne({uname: userId, mnames: mobileId})
+            followList.findOne({uid: userId, mobiles: mobileId})
             .then(fFlag => {
                 if(fFlag)
                 {
@@ -92,8 +92,8 @@ exports.updateMobile = (req, res, next) => {
     let mobiledetail = req.body;
     let Mobileid = req.params.id;
     Mobiledevice.findByIdAndUpdate(Mobileid, mobiledetail, {useFindAndModify: false, runValidators: true})
-    .then(mobileitem=>{
-        if(mobileitem) {
+    .then(mobile=>{
+        if(mobile) {
             res.redirect('/trade/'+Mobileid);
         } else {
             let err = new Error('Cannot find a mobile with id ' + Mobileid);
@@ -116,30 +116,30 @@ exports.updateMobile = (req, res, next) => {
 exports.deleteMobile = (req, res, next) => {
     let mobileID = req.params.id;
     trademobile.findOne({offerid:mobileID})
-    .then(result=>{
-        if(result){
-        Mobiledevice.findOneAndUpdate({_id:result.tradeid},{status:'available'})
+    .then(resultMobile=>{
+        if(resultMobile){
+        Mobiledevice.findOneAndUpdate({_id:resultMobile.tradeid},{status:'available'})
         .then().catch(err=> next(err));
         }
     })
     .catch(err =>next(err));
 
     trademobile.findOne({tradeid:mobileID})
-    .then(result=>{
-        if(result){
-        Mobiledevice.findOneAndUpdate({_id:result.offerid},{status:'available'})
+    .then(resultMobile=>{
+        if(resultMobile){
+        Mobiledevice.findOneAndUpdate({_id:resultMobile.offerid},{status:'available'})
         .then().catch(err=> next(err));
         }
     })
     .catch(err =>next(err));
 
     trademobile.findOneAndDelete({offerid:mobileID})
-    .then(result=>{
-        if(result){}
+    .then(resultMobile=>{
+        if(resultMobile){}
         else{
         trademobile.findOneAndDelete({tradeid:mobileID})
-        .then(mobile=>{
-            if(mobile) {}
+        .then(resultMobile=>{
+            if(resultMobile) {}
         })
             .catch(err=>next(err))
         }
@@ -148,8 +148,8 @@ exports.deleteMobile = (req, res, next) => {
 .catch(err=>next(err));
 
 Mobiledevice.findByIdAndDelete(mobileID, {useFindAndModify: false})
-    .then(mobile =>{
-        if(mobile) {
+    .then(resultMobile =>{
+        if(resultMobile) {
         res.redirect('/trade');
         } else {
         let err = new Error('Cannot find a mobile with id ' + mobileID);
@@ -162,22 +162,21 @@ Mobiledevice.findByIdAndDelete(mobileID, {useFindAndModify: false})
 
 //Follow the mobile 
 exports.follow = (req, res, next) => {
-    let mid = req.params.id;
-    let uid = req.session.user;
-    followList.findOne({uname:uid})
+    let mobileID = req.params.id;
+    let userID = req.session.user;
+    followList.findOne({uid:userID})
     .then(user => {
         if(user){
-            followList.updateOne({uname: uid},
-                {$push: {mnames:[mid]}}, 
+            followList.updateOne({uid: userID},
+                {$push: {mobiles:[mobileID]}}, 
                 function(err){
                     if(err){
                         return next(err);
                     }
-                });    
-                console.log("Updated")            
+                });              
         }
         else{
-            let addwlist = new followList({uname: uid, mnames: [mid]});
+            let addwlist = new followList({uid: userID, mobiles: [mobileID]});
             addwlist.save();
         }
     })
@@ -187,37 +186,33 @@ exports.follow = (req, res, next) => {
 
 //unfollow the page
 exports.unfollow = (req, res, next) => {
-    let mid = req.params.id;
-    let uid = req.session.user;
-    followList.findOne({uname:uid})
-    .then(user => {
-        if(user){
-            followList.updateOne({uname: uid},
-                {$pullAll: {mnames:[mid]}}, 
+    let mobileid = req.params.id;
+    let userid = req.session.user;
+    followList.findOne({uid:userid})
+    .then(userresult => {
+        if(userresult){
+            followList.updateOne({uid: userid},
+                {$pullAll: {mobiles:[mobileid]}}, 
                 function(err){
-                    if(err){
-                        return next(err);
-                    }
-                    else{
-                        followList.findOne({uname:uid})
-                        .then(result=>{
-                            if(result){
-                                if(result.mnames.length === 0){
-                                followList.findOneAndDelete({uname:uid})
-                                .then(result =>{
-                                    console.log("Watchlist deleted")
-                                })
-                                .catch(err=> next(err)); 
-                            }
-                            }
-                        })
-                        .catch(err=>next(err))
-                    }
+                if(err){
+                    return next(err);
+                }
+                else{
+                    followList.findOne({uid:userid})
+                    .then(result=>{
+                        if(result){
+                            if(result.mobiles.length === 0){
+                            followList.findOneAndDelete({uid:userid})
+                            .then().catch(err=> next(err)); 
+                        }
+                        }
+                    })
+                    .catch(err=>next(err))
+                }
                 });   
         }
     })
     .catch(err=>next(err));
-   
     res.redirect('/users/profile');  
 };
 
@@ -228,7 +223,7 @@ let userid = req.session.user;
 Promise.all([User.findById(userid), Mobiledevice.find({owner: userid})])
 .then(mobiledetails => {
     const [user, mobiles] = mobiledetails;
-    res.render('./tradem/trabemobile', {user, mobiles,mobileid })
+    res.render('./tradem/trabemobile', {user, mobiles, mobileid })
 })
 .catch(err=> next(err));
 }
@@ -280,7 +275,7 @@ exports.offercancel = (req, res, next) => {
 exports.manageOffer= (req, res, next) => {
     let trademobileid= req.params.id;
     let flag = true
-    trademobile.findOne({offerid:tid}).populate('tradeid').populate('offerid')
+    trademobile.findOne({offerid:trademobileid}).populate('tradeid').populate('offerid')
      .then(resultmobile =>{
          if(resultmobile){
          res.render('./tradem/manageOffer',{flag,resultmobile})
@@ -296,7 +291,6 @@ exports.manageOffer= (req, res, next) => {
      })
      .catch(err =>next(err));
 }
-
 
 //to accept the offer
 exports.acceptOffer = (req, res, next) => {

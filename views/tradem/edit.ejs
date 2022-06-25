@@ -1,53 +1,53 @@
 <%- include('../partials/header.ejs')%>
 <div class="content">
-    <form class="form-horizontal align-items-center" method="POST" action="/trade/<%= mobile.id%>?_method=PUT">
+    <form class="form-horizontal align-items-center" method="POST" action="/trade/<%= mobileEntry.id%>?_method=PUT">
         <table class="form-center">
             <div class="form-group">
                 <label class="control-label col-sm-2">Company Name:</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="company" value="<%= mobile.company %>" required>
+                  <input type="text" class="form-control" name="company" value="<%= mobileEntry.company %>" required>
                 </div>
               </div>
             
               <div class="form-group">
                 <label class="control-label col-sm-2">Model:</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="name" value="<%= mobile.name %>" required>
+                  <input type="text" class="form-control" name="name" value="<%= mobileEntry.name %>" required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="control-label col-sm-2">Battery:</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="battery" value="<%= mobile.battery %>" required>
+                  <input type="text" class="form-control" name="battery" value="<%= mobileEntry.battery %>" required>
                 </div>
               </div>
           
               <div class="form-group">
                 <label class="control-label col-sm-2">Memory:</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="memory" value="<%= mobile.memory %>" required>
+                  <input type="text" class="form-control" name="memory" value="<%= mobileEntry.memory %>" required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="control-label col-sm-2">Color:</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="color" value="<%= mobile.color %>" required>
+                  <input type="text" class="form-control" name="color" value="<%= mobileEntry.color %>" required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="control-label col-sm-2">Details:</label>
                 <div class="col-sm-5">
-                <textarea class="form-control" rows="5" name="details" required><%= mobile.details %></textarea>
+                <textarea class="form-control" rows="5" name="details" required><%= mobileEntry.details %></textarea>
                 </div>
               </div>
           
               <div class="form-group">
                   <label class="control-label col-sm-2">Image URL:</label>
                   <div class="col-sm-5">
-                    <input type="text" class="form-control" name="image" value="<%= mobile.image %>" required> 
+                    <input type="text" class="form-control" name="image" value="<%= mobileEntry.image %>" required> 
                   </div>
                 </div>
 
