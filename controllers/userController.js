@@ -1,6 +1,6 @@
 const model = require('../models/user');
 const mobile = require('../models/item');
-const followList = require('../models/follow');
+const followList = require('../models/interest');
 const trades = require('../models/trade');
 
 //To display new user form
