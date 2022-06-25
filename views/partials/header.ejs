@@ -41,29 +41,8 @@
   </div>
 </div>
 
-<nav class="navbar navbar-dark bg-dark" style="background-color: #90EE90;">
+<nav class="navbar navbar-dark bg-dark" style="background-color: #90EE90; text-align: center;">
       <ul class="nav navbar-nav">
-        <li><a href="/">Home
-          <span class="	glyphicon glyphicon-home"></span>
-        </a></li>
-        <li><a href="/trade">Trade</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/trade">Trade List</a></li>
       </ul>
   </nav>
-
-  <% if(errorMessages.length > 0) { %>
-    <% errorMessages.forEach(message => { %>
-      <div class="error">
-        <%=message%>
-      </div>
-      <% }); %>
-      <%}%>
-
-  <% if(successMessages.length > 0){ %>
-    <% successMessages.forEach(message => { %>
-      <div class="success">
-        <%=message%>
-      </div>
-    <%});%>
-  <%}%>
