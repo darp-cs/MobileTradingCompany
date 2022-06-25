@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/tradeController');
 const { isLoggedIn, isHost } = require('../middlewares/auth');
-const { validateId } = require('../middlewares/validator'); 
-const { validateMobile, validateResult} = require('../middlewares/validator');
 
 //GET /connections: send all connections to the user
 router.get('/', controller.index);
@@ -12,36 +10,36 @@ router.get('/', controller.index);
 router.get('/new', isLoggedIn, controller.new);
 
 //POST /connections: create a new connection
-router.post('/', isLoggedIn, validateMobile, validateResult, controller.create);
+router.post('/', isLoggedIn, controller.create);
 
 //GET /connections/:id: send details of connection identified by id
-router.get('/:id', validateId, controller.show);
+router.get('/:id',  controller.show);
 
 //GET /connections/:id: send html form for editing an existing connection
-router.get('/:id/edit', validateId, isLoggedIn, isHost, controller.edit);
+router.get('/:id/edit',  isLoggedIn, isHost, controller.edit);
 
 //PUT /connections/:id: update the connection identified by id
-router.put('/:id', validateId, isLoggedIn, isHost,validateMobile, validateResult, controller.update);
+router.put('/:id',  isLoggedIn, isHost, controller.update);
 
 //DELETE /connections/:id: delete the connection identified by id
-router.delete('/:id', validateId, isLoggedIn, isHost, controller.delete);
+router.delete('/:id',  isLoggedIn, isHost, controller.delete);
 
 
-router.post('/:id/interested', validateId, isLoggedIn, controller.interested);
+router.post('/:id/interested',  isLoggedIn, controller.interested);
 
-router.post('/:id/notinterested', validateId, isLoggedIn, controller.notinterested);
+router.post('/:id/notinterested',  isLoggedIn, controller.notinterested);
 
-router.post('/:id/tradeitem', validateId, isLoggedIn, controller.tradeitem);
+router.post('/:id/tradeitem',  isLoggedIn, controller.tradeitem);
 
-router.post('/:id/tradeoffered',validateId, isLoggedIn, controller.tradeoffered);
+router.post('/:id/tradeoffered', isLoggedIn, controller.tradeoffered);
 
-router.post('/:id/offercancel', validateId, isLoggedIn, controller.offercancel);
+router.post('/:id/offercancel',  isLoggedIn, controller.offercancel);
 
-router.post('/:id/manageOffer', validateId, isLoggedIn, controller.manageOffer);
+router.post('/:id/manageOffer',  isLoggedIn, controller.manageOffer);
 
-router.post('/:id/acceptOffer', validateId, isLoggedIn, controller.acceptOffer);
+router.post('/:id/acceptOffer',  isLoggedIn, controller.acceptOffer);
 
-router.post('/:id/rejectOffer', validateId, isLoggedIn, controller.rejectOffer);
+router.post('/:id/rejectOffer',  isLoggedIn, controller.rejectOffer);
 
 
 module.exports=router;  
