@@ -2,33 +2,33 @@
 
     <div class="col-sm-8" style=" padding-top: 80px;padding-left: 100px;">
 
-<% if(r){ %>
+<% if(flag){ %>
     <table class="table table-dark">
         <tbody>
             <tr>
-            <td><%= result.tradeid.name%></td>
+            <td><%= resultmobile.tradeid.name%></td>
             <td></td>
-            <td><%= result.offerid.name%></td>
+            <td><%= resultmobile.offerid.name%></td>
             <td rowspan="2">
                
         </td>
     </tr>
     <tr>
         <td>
-            <img src="<%=result.tradeid.image %>" height="150" width="120">
+            <img src="<%=resultmobile.tradeid.image %>" height="150" width="120">
         </td>
         <td>
             <img src="/images/arrow.png" height="80" width="80">
         </td>
         <td>
-            <img src="<%=result.offerid.image %>" height="150" width="120">
+            <img src="<%=resultmobile.offerid.image %>" height="150" width="120">
         </td>
     </tr>
         </tbody>
     </table>
     <div style="padding-left: 200px;">
     <form>
-        <button type="submit" class="btn btn-success"  formmethod="POST" formaction="/trade/<%= result.tradeid.id%>/offercancel">Cancel offer</button>
+        <button type="submit" class="btn btn-success"  formmethod="POST" formaction="/trade/<%= resultmobile.tradeid.id%>/offercancel">Cancel offer</button>
     </form>
 </div>
     <% } else {%>
