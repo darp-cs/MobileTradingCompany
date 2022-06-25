@@ -1,16 +1,18 @@
 const model = require('../models/user');
 const mobile = require('../models/item');
-const watchList = require('../models/interest');
+const followList = require('../models/follow');
 const trades = require('../models/trade');
+
+//To display new user form
 exports.new = (req, res)=>{
     res.render('./user/new');
 };
 
+//Create new user
 exports.create = (req, res, next)=>{
     let user = new model(req.body);
     user.save()
     .then(user=> {
-        req.flash('success', 'You have successfully registered');
         res.redirect('/users/login');
     })
     .catch(err=>{
@@ -28,6 +30,7 @@ exports.create = (req, res, next)=>{
     }); 
 };
 
+//to display login page
 exports.getUserLogin = (req, res, next) => {
     res.render('./user/login');
 }
@@ -65,7 +68,7 @@ exports.profile = (req, res, next)=>{
     let userid = req.session.user;
     let flag = false;
     Promise.all([model.findById(userid), mobile.find({owner: userid}),
-        watchList.find({uname: userid}).populate('mnames'),trades.find({traderid:userid}).populate('tradeid')]) 
+        followList.find({uid: userid}).populate('mobiles'),trades.find({traderid:userid}).populate('tradeid')]) 
     .then(results=>{
         const [user, mobiles,wmobiles,omobiles] = results;
         const flag = false;
@@ -74,7 +77,7 @@ exports.profile = (req, res, next)=>{
 .catch(err=>next(err));
 };
 
-//logout
+// logout function
 exports.logout = (req, res, next)=>{
     req.session.destroy(err=>{
         if(err) 
