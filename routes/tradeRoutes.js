@@ -3,33 +3,33 @@ const router = express.Router();
 const controller = require('../controllers/tradeController');
 const { isLoggedIn, isHost } = require('../middlewares/auth');
 
-//GET /connections: send all connections to the user
-router.get('/', controller.index);
+// route for home page
+router.get('/', controller.homepage);
 
-//GET /connections/new: send html form for creating a new connection
-router.get('/new', isLoggedIn, controller.new);
+//route to display page for creating new entry
+router.get('/new', isLoggedIn, controller.newMobile);
 
-//POST /connections: create a new connection
-router.post('/', isLoggedIn, controller.create);
+//route to create new mobile entry
+router.post('/', isLoggedIn,  controller.createNewEntry);
 
-//GET /connections/:id: send details of connection identified by id
-router.get('/:id',  controller.show);
+//route to display the list of mobiles
+router.get('/:id', controller.showMobileDetail);
 
-//GET /connections/:id: send html form for editing an existing connection
-router.get('/:id/edit',  isLoggedIn, isHost, controller.edit);
+//to display the edit page
+router.get('/:id/edit', isLoggedIn, isHost, controller.editMobile);
 
-//PUT /connections/:id: update the connection identified by id
-router.put('/:id',  isLoggedIn, isHost, controller.update);
+//to update the mobile 
+router.put('/:id', isLoggedIn, isHost, controller.updateMobile);
 
-//DELETE /connections/:id: delete the connection identified by id
-router.delete('/:id',  isLoggedIn, isHost, controller.delete);
+//to delete the mobile
+router.delete('/:id', isLoggedIn, isHost, controller.deleteMobile);
 
 
-router.post('/:id/interested',  isLoggedIn, controller.interested);
+router.post('/:id/interested', isLoggedIn, controller.follow);
 
-router.post('/:id/notinterested',  isLoggedIn, controller.notinterested);
+router.post('/:id/notinterested', isLoggedIn, controller.unfollow);
 
-router.post('/:id/tradeitem',  isLoggedIn, controller.tradeitem);
+router.post('/:id/tradeitem',  isLoggedIn, controller.startTrade);
 
 router.post('/:id/tradeoffered', isLoggedIn, controller.tradeoffered);
 
@@ -42,4 +42,4 @@ router.post('/:id/acceptOffer',  isLoggedIn, controller.acceptOffer);
 router.post('/:id/rejectOffer',  isLoggedIn, controller.rejectOffer);
 
 
-module.exports=router;  
+module.exports=router;
