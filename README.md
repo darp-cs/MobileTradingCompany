@@ -1,4 +1,4 @@
-# MobileTradingCompany
+
 
 <h1> Mobile Trading Company</h1>
 
