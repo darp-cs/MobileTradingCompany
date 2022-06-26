@@ -13,11 +13,9 @@
 <h3> Required Downloads <h3>
 <ul>
     <li>Node.js </li>
-        <li style = {list-style:none;}>
             <ul>
                 <li> <a href="https://nodejs.org/en/download/"></a></li>
             </ul>
-        </li>
     <li> MongoDB Community Server</li>
         <li>
             <ul>
