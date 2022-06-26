@@ -16,9 +16,7 @@
     <dt> MongoDB Community Server</dt>
                 <dd><a href="https://www.mongodb.com/try/download/community"></a> </dd>
                 <dd>Create Database called trademobile<dd>
-                <br>
                 <dd><strong>Required Collections<strong><dd>
-                <br>
                 <dd> users</dd>
                 <dd> item </dd>
                 <dd> followlists</dd>
