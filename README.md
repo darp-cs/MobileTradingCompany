@@ -15,12 +15,6 @@
     <dd> https://nodejs.org/en/download/</dd>
     <dt> MongoDB Community Server</dt>
                 <dd>https://www.mongodb.com/try/download/community </dd>
-                <dd>Create Database called trademobile<dd>
-                <dd><strong>Required Collections<strong><dd>
-                <dd> &ensp;users</dd>
-                <dd> &ensp;item </dd>
-                <dd> &ensp;followlists</dd>
-                <dd> &ensp;trade </dd>
 </dl>
 
 <h3><strong>Optional Downloads</strong><h3>
