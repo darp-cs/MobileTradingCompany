@@ -17,10 +17,10 @@
                 <dd><a href="https://www.mongodb.com/try/download/community"></a> </dd>
                 <dd>Create Database called trademobile<dd>
                 <dd><strong>Required Collections<strong><dd>
-                <dd> users</dd>
-                <dd> item </dd>
-                <dd> followlists</dd>
-                <dd> trade </dd>
+                <dd> &ensp;users</dd>
+                <dd> &ensp;item </dd>
+                <dd> &ensp;followlists</dd>
+                <dd> &ensp;trade </dd>
 </dl>
 
 <h3><strong>Optional Downloads</strong><h3>
