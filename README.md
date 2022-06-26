@@ -11,40 +11,40 @@
 </ul>
     
 <h3> Required Downloads <h3>
-<ol>
+<ul>
     <li>Node.js </li>
         <li>
-            <ol>
+            <ul>
                 <li> <a href="https://nodejs.org/en/download/"></a></li>
-            </ol>
+            </ul>
         </li>
     <li> MongoDB Community Server</li>
         <li>
-            <ol>
+            <ul>
                 <li><a href="https://www.mongodb.com/try/download/community"></a> </li>
                 <li>Create Database called trademobile<li>
                 <li><strong>Required Collections<strong><li>
                 <li>
-                    <ol>
+                    <ul>
                         <li> users</li>
                         <li> item </li>
                         <li> followlists</li>
                         <li> trade </li>
                         <li> mobiles</li>
-                    </ol>
-            </ol>
+                    </ul>
+            </ul>
         </li>
-</ol>
+</ul>
 
 <h3>Optional Downloads <h3>
-<ol>
+<ul>
     <li> MongoDB Compass </li>
     <li>
-        <ol>
+        <ul>
             <li><a href="https://www.mongodb.com/try/download/compass"></a></li>
-        </ol>
+        </ul>
     </li>
-</ol>
+</ul>
 
 
 <h2> How to Run the Project </h2>
