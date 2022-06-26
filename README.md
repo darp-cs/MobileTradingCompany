@@ -2,14 +2,14 @@
 
 <h1> Mobile Trading Company</h1>
 
-<h3> Project Download Options </h3>
+<h3><strong> Project Download Options </strong></h3>
 
 <dl>
     <dt>Click on Green Code Button - > Download as Zip </dt>
     <dt>If you have Git installed, open your terminal/command prompt and type git clone https://github.com/darp-cs/MobileTradingCompany.git to download the project folder </dt>
 </dl>
     
-<h3> Required Downloads <h3>
+<h3> <strong>Required Downloads </strong><h3>
 <dl>
     <dt>Node.js </dt>
     <dd> <a href="https://nodejs.org/en/download/"></a></dd>
@@ -25,7 +25,7 @@
                 <dd> trade </dd>
 </dl>
 
-<h3>Optional Downloads <h3>
+<h3><strong>Optional Downloads</strong><h3>
 <dl>
     <dt> MongoDB Compass </dt>
             <dd><a href="https://www.mongodb.com/try/download/compass"></a></dd>
