@@ -14,7 +14,7 @@
     <dt>Node.js </dt>
     <dd> <a href="https://nodejs.org/en/download/"></a></dd>
     <dt> MongoDB Community Server</dt>
-                <dd><a href="https://www.mongodb.com/try/download/community"></a> </dd>
+                <dd>"https://www.mongodb.com/try/download/community" </dd>
                 <dd>Create Database called trademobile<dd>
                 <dd><strong>Required Collections<strong><dd>
                 <dd> &ensp;users</dd>
@@ -26,7 +26,7 @@
 <h3><strong>Optional Downloads</strong><h3>
 <dl>
     <dt> MongoDB Compass </dt>
-            <dd><a href="https://www.mongodb.com/try/download/compass"></a></dd>
+            <dd>"https://www.mongodb.com/try/download/compass"</dd>
 </dl>
 
 
