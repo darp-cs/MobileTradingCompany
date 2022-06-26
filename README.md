@@ -13,7 +13,7 @@
 <h3> Required Downloads <h3>
 <ul>
     <li>Node.js </li>
-        <li>
+        <li style = {list-style:none;}>
             <ul>
                 <li> <a href="https://nodejs.org/en/download/"></a></li>
             </ul>
@@ -53,5 +53,10 @@
 <p>Run command "npm i", this will install required modules</p>
 <br>
 <p>Run command "node app.js"</p>
+
+ul {
+    list-style-type: none;
+    margin-left: 40px;
+}
 
 
