@@ -14,7 +14,7 @@ const userRoutes = require('./routes/userRoutes');
 const app = express();
 
 //configure app
-let port = 3050;
+let port = 3000;
 let host = 'localhost';
 app.set('view engine', 'ejs');
 

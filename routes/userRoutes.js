@@ -22,6 +22,10 @@ router.post('/login', isGuest, controller.login);
 router.get('/profile', isLoggedIn, controller.profile);
 
 
+router.get('/:id/edit', isLoggedIn, controller.editProfile);
+
+
+router.post('/:id/update', isLoggedIn, controller.updateProfile)
 
 //POST /users/logout: logout a user
 router.get('/logout', isLoggedIn, controller.logout);
