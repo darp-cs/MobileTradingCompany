@@ -39,11 +39,9 @@
 <h3>Optional Downloads <h3>
 <ul>
     <li> MongoDB Compass </li>
-    <li>
         <ul>
             <li><a href="https://www.mongodb.com/try/download/compass"></a></li>
         </ul>
-    </li>
 </ul>
 
 
@@ -54,9 +52,5 @@
 <br>
 <p>Run command "node app.js"</p>
 
-ul {
-    list-style-type: none;
-    margin-left: 40px;
-}
 
 
